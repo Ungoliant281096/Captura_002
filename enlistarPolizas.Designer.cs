@@ -42,6 +42,7 @@
             button2 = new Button();
             button3 = new Button();
             button4 = new Button();
+            printPreviewDialog1 = new PrintPreviewDialog();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             flowLayoutPanel1.SuspendLayout();
@@ -151,6 +152,7 @@
             button2.Size = new Size(36, 42);
             button2.TabIndex = 0;
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // button3
             // 
@@ -169,6 +171,16 @@
             button4.Size = new Size(36, 42);
             button4.TabIndex = 2;
             button4.UseVisualStyleBackColor = true;
+            // 
+            // printPreviewDialog1
+            // 
+            printPreviewDialog1.AutoScrollMargin = new Size(0, 0);
+            printPreviewDialog1.AutoScrollMinSize = new Size(0, 0);
+            printPreviewDialog1.ClientSize = new Size(400, 300);
+            printPreviewDialog1.Enabled = true;
+            printPreviewDialog1.Icon = (Icon)resources.GetObject("printPreviewDialog1.Icon");
+            printPreviewDialog1.Name = "printPreviewDialog1";
+            printPreviewDialog1.Visible = false;
             // 
             // enlistarPolizas
             // 
@@ -212,5 +224,6 @@
         private Button button2;
         private Button button3;
         private Button button4;
+        private PrintPreviewDialog printPreviewDialog1;
     }
 }
