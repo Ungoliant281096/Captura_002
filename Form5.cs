@@ -73,7 +73,7 @@ namespace Captura
         }
         public void SaveGridDataToFile(DataGridView dataGridView)
         {
-            string filePath = "C:/Users/fabian.cruz/Desktop/SAC001";
+            string filePath = ConfiguracionGlobal.GeneralArchive + ConfiguracionGlobal.GuardarOperacion;
 
             using (FileStream fs = new FileStream(filePath, FileMode.Append, FileAccess.Write))
             {
@@ -213,80 +213,92 @@ namespace Captura
         }
         private void SearchRecordByB1(string searchValue)
         {
-            string mayorpath = ConfiguracionGlobal.GeneralPath + "CATMAY";
-            int recordSize = Marshal.SizeOf(typeof(CATMAY));
-            using (FileStream CATMAY = new FileStream(mayorpath, FileMode.Open, FileAccess.Read))
-            using (BinaryReader reader = new BinaryReader(CATMAY))
+            try
             {
-                long numRecords = CATMAY.Length / recordSize;
-                for (int i = 0; i < numRecords; i++)
+                string mayorpath = ConfiguracionGlobal.GeneralPath + "CATMAY";
+                int recordSize = Marshal.SizeOf(typeof(CATMAY));
+                using (FileStream CATMAY = new FileStream(mayorpath, FileMode.Open, FileAccess.Read))
+                using (BinaryReader reader = new BinaryReader(CATMAY))
                 {
-                    CATMAY.Seek(i * recordSize, SeekOrigin.Begin);
-                    byte[] buffer = reader.ReadBytes(recordSize);
-                    GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
-
-                    try
+                    long numRecords = CATMAY.Length / recordSize;
+                    for (int i = 0; i < numRecords; i++)
                     {
-                        CATMAY record = (CATMAY)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATMAY));
+                        CATMAY.Seek(i * recordSize, SeekOrigin.Begin);
+                        byte[] buffer = reader.ReadBytes(recordSize);
+                        GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 
-                        if (record.B1.Trim() == searchValue)
+                        try
                         {
-                            int currentRowIndex = dataGridViewPoliza.CurrentCell.RowIndex;
-                            DataGridViewRow currentRow = dataGridViewPoliza.Rows[currentRowIndex];
-                            dataGridViewPoliza.Rows[currentRowIndex].Cells[2].Style.Font = new Font(dataGridViewPoliza.Font, FontStyle.Bold);
-                            currentRow.Cells[2].Value = record.B2;
+                            CATMAY record = (CATMAY)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATMAY));
 
-                            inicio = int.Parse(record.B4);
-                            final = int.Parse(record.B5);
+                            if (record.B1.Trim() == searchValue)
+                            {
+                                int currentRowIndex = dataGridViewPoliza.CurrentCell.RowIndex;
+                                DataGridViewRow currentRow = dataGridViewPoliza.Rows[currentRowIndex];
+                                dataGridViewPoliza.Rows[currentRowIndex].Cells[2].Style.Font = new Font(dataGridViewPoliza.Font, FontStyle.Bold);
+                                currentRow.Cells[2].Value = record.B2;
 
-                            return;
+                                inicio = int.Parse(record.B4);
+                                final = int.Parse(record.B5);
+
+                                return;
+                            }
                         }
-                    }
-                    finally
-                    {
-                        handle.Free();
+                        finally
+                        {
+                            handle.Free();
+                        }
                     }
                 }
             }
-            MessageBox.Show($"No se encontró un registro {searchValue}");
+            catch (Exception ex)
+            {
+                MessageBox.Show($"No se encontró un registro {searchValue}");
+            }
         }
         private void SearchRecordByC1(string searchValue, int inicioC, int finalC)
         {
-            string auxiliarPath = ConfiguracionGlobal.GeneralPath + "CATAUX";
-            int recordSize = Marshal.SizeOf(typeof(CATAUX));
-            using (FileStream CATAUX = new FileStream(auxiliarPath, FileMode.Open, FileAccess.Read))
-            using (BinaryReader reader = new BinaryReader(CATAUX))
+            try
             {
-                long numRecords = CATAUX.Length / recordSize;
-                string cuenta = dataGridViewPoliza.Rows[dataGridViewPoliza.CurrentCell.RowIndex - 1].Cells[0].Value?.ToString() ?? string.Empty;
-
-                for (int i = inicioC - 1; i < finalC - 1; i++)
+                string auxiliarPath = ConfiguracionGlobal.GeneralPath + "CATAUX";
+                int recordSize = Marshal.SizeOf(typeof(CATAUX));
+                using (FileStream CATAUX = new FileStream(auxiliarPath, FileMode.Open, FileAccess.Read))
+                using (BinaryReader reader = new BinaryReader(CATAUX))
                 {
-                    CATAUX.Seek(i * recordSize, SeekOrigin.Begin);
-                    byte[] buffer = reader.ReadBytes(recordSize);
-                    GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                    long numRecords = CATAUX.Length / recordSize;
+                    string cuenta = dataGridViewPoliza.Rows[dataGridViewPoliza.CurrentCell.RowIndex - 1].Cells[0].Value?.ToString() ?? string.Empty;
 
-                    try
+                    for (int i = inicioC - 1; i < finalC - 1; i++)
                     {
-                        CATAUX record = (CATAUX)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATAUX));
+                        CATAUX.Seek(i * recordSize, SeekOrigin.Begin);
+                        byte[] buffer = reader.ReadBytes(recordSize);
+                        GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 
-                        if (record.C1.Trim() == searchValue)
+                        try
                         {
-                            int currentRowIndex = dataGridViewPoliza.CurrentCell.RowIndex;
-                            DataGridViewRow currentRow = dataGridViewPoliza.Rows[currentRowIndex];
-                            currentRow.Cells[2].Value = record.C2;
+                            CATAUX record = (CATAUX)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATAUX));
 
-                            currentRow.Cells[6].Value = textBox5.Text;
-                            return;
+                            if (record.C1.Trim() == searchValue)
+                            {
+                                int currentRowIndex = dataGridViewPoliza.CurrentCell.RowIndex;
+                                DataGridViewRow currentRow = dataGridViewPoliza.Rows[currentRowIndex];
+                                currentRow.Cells[2].Value = record.C2;
+
+                                currentRow.Cells[6].Value = textBox5.Text;
+                                return;
+                            }
                         }
-                    }
-                    finally
-                    {
-                        handle.Free();
+                        finally
+                        {
+                            handle.Free();
+                        }
                     }
                 }
             }
-            MessageBox.Show($"No se encontró un registro {searchValue}");
+            catch (Exception ex)
+            {
+                MessageBox.Show($"No se encontró un registro {searchValue}");
+            }
         }
         private void definirParcial(decimal monto)
         {
@@ -441,80 +453,6 @@ namespace Captura
                 return;
             }
         }
-        private void Pegar_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                string texto_copiado = Clipboard.GetText();
-                string[] lineas = texto_copiado.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                int error = 0;
-                int fila = dataGridViewPoliza.CurrentCell.RowIndex;
-                int columna = dataGridViewPoliza.CurrentCell.ColumnIndex;
-                DataGridViewCell objeto_celda;
-                dataGridViewPoliza.Columns[2].ReadOnly = false;
-
-                foreach (string linea in lineas)
-                {
-                    if (fila < dataGridViewPoliza.RowCount && linea.Length > 0)
-                    {
-                        string[] celdas = linea.Split('\t');
-
-                        for (int indice = 0; indice < celdas.Length; ++indice)
-                        {
-                            if (columna + indice < dataGridViewPoliza.ColumnCount)
-                            {
-                                objeto_celda = dataGridViewPoliza[columna + indice, fila];
-                                if (!objeto_celda.ReadOnly && objeto_celda != null)
-                                {
-                                    if (objeto_celda.Value == null || objeto_celda.Value.ToString() != celdas[indice])
-                                    {
-                                        if (objeto_celda.ValueType != null)
-                                        {
-                                            objeto_celda.Value = Convert.ChangeType(celdas[indice], objeto_celda.ValueType);
-                                        }
-                                        else
-                                        {
-                                            objeto_celda.Value = celdas[indice];
-                                        }
-                                    }
-                                }
-                                else
-                                {
-                                    error++;
-                                }
-                            }
-                            else
-                            {
-                                break;
-                            }
-                        }
-                        fila++;
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                if (error > 0)
-                {
-                    MessageBox.Show(string.Format("{0} celdas no pueden ser actualizadas debido a que son de solo lectura.", error),
-                                    "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
-                dataGridViewPoliza.Columns[2].ReadOnly = true;
-            }
-            catch (FormatException fexcepcion)
-            {
-                MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
-                                "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-            catch (NullReferenceException nexcepcion)
-            {
-                MessageBox.Show("Se ha encontrado una referencia nula en una de las celdas." + "\n\nDETALLES: \n\n" + nexcepcion.Message,
-                                "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-        }
         private void button4_Click_1(object sender, EventArgs e)
         {
             openFileDialog1.ShowDialog(this);
@@ -542,6 +480,81 @@ namespace Captura
         private void Form5_Resize(object sender, EventArgs e)
         {
             dataGridViewPoliza.Height = this.ClientSize.Height - dataGridViewPoliza.Top - 20;
+        }
+
+        private void pegarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+                try
+                {
+                    string texto_copiado = Clipboard.GetText();
+                    string[] lineas = texto_copiado.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                    int error = 0;
+                    int fila = dataGridViewPoliza.CurrentCell.RowIndex;
+                    int columna = dataGridViewPoliza.CurrentCell.ColumnIndex;
+                    DataGridViewCell objeto_celda;
+                    dataGridViewPoliza.Columns[2].ReadOnly = false;
+
+                    foreach (string linea in lineas)
+                    {
+                        if (fila < dataGridViewPoliza.RowCount && linea.Length > 0)
+                        {
+                            string[] celdas = linea.Split('\t');
+
+                            for (int indice = 0; indice < celdas.Length; ++indice)
+                            {
+                                if (columna + indice < dataGridViewPoliza.ColumnCount)
+                                {
+                                    objeto_celda = dataGridViewPoliza[columna + indice, fila];
+                                    if (!objeto_celda.ReadOnly && objeto_celda != null)
+                                    {
+                                        if (objeto_celda.Value == null || objeto_celda.Value.ToString() != celdas[indice])
+                                        {
+                                            if (objeto_celda.ValueType != null)
+                                            {
+                                                objeto_celda.Value = Convert.ChangeType(celdas[indice], objeto_celda.ValueType);
+                                            }
+                                            else
+                                            {
+                                                objeto_celda.Value = celdas[indice];
+                                            }
+                                        }
+                                    }
+                                    else
+                                    {
+                                        error++;
+                                    }
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            fila++;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    if (error > 0)
+                    {
+                        MessageBox.Show(string.Format("{0} celdas no pueden ser actualizadas debido a que son de solo lectura.", error),
+                                        "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                    dataGridViewPoliza.Columns[2].ReadOnly = true;
+                }
+                catch (FormatException fexcepcion)
+                {
+                    MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
+                                    "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+                catch (NullReferenceException nexcepcion)
+                {
+                    MessageBox.Show("Se ha encontrado una referencia nula en una de las celdas." + "\n\nDETALLES: \n\n" + nexcepcion.Message,
+                                    "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
         }
     }
 }

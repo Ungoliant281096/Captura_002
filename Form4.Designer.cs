@@ -54,6 +54,8 @@
             label10 = new Label();
             dateTimePicker2 = new DateTimePicker();
             dataGridViewPoliza = new DataGridView();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            pegarToolStripMenuItem = new ToolStripMenuItem();
             flowLayoutPanel1 = new FlowLayoutPanel();
             panel1 = new Panel();
             textBox3 = new TextBox();
@@ -64,14 +66,11 @@
             label2 = new Label();
             openFileDialog1 = new OpenFileDialog();
             openFileDialog2 = new OpenFileDialog();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            Copiar = new ToolStripMenuItem();
-            Pegar = new ToolStripMenuItem();
             panel3.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPoliza).BeginInit();
-            panel1.SuspendLayout();
             contextMenuStrip1.SuspendLayout();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel3
@@ -214,6 +213,7 @@
             button2.Size = new Size(36, 42);
             button2.TabIndex = 1;
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click_1;
             // 
             // button3
             // 
@@ -288,6 +288,7 @@
             dataGridViewPoliza.BackgroundColor = SystemColors.Window;
             dataGridViewPoliza.BorderStyle = BorderStyle.None;
             dataGridViewPoliza.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewPoliza.ContextMenuStrip = contextMenuStrip1;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -302,6 +303,20 @@
             dataGridViewPoliza.Size = new Size(942, 224);
             dataGridViewPoliza.TabIndex = 21;
             dataGridViewPoliza.CellEndEdit += dataGridViewPoliza_CellEndEdit_1;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { pegarToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(146, 26);
+            // 
+            // pegarToolStripMenuItem
+            // 
+            pegarToolStripMenuItem.Name = "pegarToolStripMenuItem";
+            pegarToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.V;
+            pegarToolStripMenuItem.Size = new Size(145, 22);
+            pegarToolStripMenuItem.Text = "Pegar";
+            pegarToolStripMenuItem.Click += pegarToolStripMenuItem_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -392,22 +407,6 @@
             // 
             openFileDialog2.FileName = "openFileDialog2";
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { Copiar, Pegar });
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(181, 70);
-            // 
-            // Copiar
-            // 
-            Copiar.Name = "Copiar";
-            Copiar.Size = new Size(180, 22);
-            // 
-            // Pegar
-            // 
-            Pegar.Name = "Pegar";
-            Pegar.Size = new Size(180, 22);
-            // 
             // CapturaPoliza
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -431,9 +430,9 @@
             panel3.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridViewPoliza).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
-            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -474,7 +473,6 @@
         private Button buttonCuenta;
         private Button buttonSubcuenta;
         private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem Copiar;
-        private ToolStripMenuItem Pegar;
+        private ToolStripMenuItem pegarToolStripMenuItem;
     }
 }

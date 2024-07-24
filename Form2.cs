@@ -33,37 +33,44 @@ namespace Captura
 
         private void leerCatalogoMayor()
         {
-            string mayorpath = ConfiguracionGlobal.GeneralPath + "CATMAY";
-            int recordSize = Marshal.SizeOf(typeof(CATMAY));
-            using (FileStream CATMAY = new FileStream(mayorpath, FileMode.Open, FileAccess.Read))
-            using (BinaryReader reader = new BinaryReader(CATMAY))
+            try
             {
-                long numRecords = CATMAY.Length / recordSize;
-
-                for (int i = 0; i < numRecords; i++)
+                string mayorpath = ConfiguracionGlobal.GeneralPath + "CATMAY";
+                int recordSize = Marshal.SizeOf(typeof(CATMAY));
+                using (FileStream CATMAY = new FileStream(mayorpath, FileMode.Open, FileAccess.Read))
+                using (BinaryReader reader = new BinaryReader(CATMAY))
                 {
-                    CATMAY.Seek(i * recordSize, SeekOrigin.Begin);
-                    byte[] buffer = reader.ReadBytes(recordSize);
-                    GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                    long numRecords = CATMAY.Length / recordSize;
 
-                    try
+                    for (int i = 0; i < numRecords; i++)
                     {
-                        CATMAY record = (CATMAY)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATMAY));
+                        CATMAY.Seek(i * recordSize, SeekOrigin.Begin);
+                        byte[] buffer = reader.ReadBytes(recordSize);
+                        GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 
-                        if (!string.IsNullOrWhiteSpace(record.B1) ||
-                            !string.IsNullOrWhiteSpace(record.B2) ||
-                            !string.IsNullOrWhiteSpace(record.B5))
+                        try
                         {
-                            // Agregar una nueva fila al DataGridView con los valores del registro
-                            dataGridView1.Rows.Add(record.B1.Trim(), record.B2.Trim(), record.B3.Trim(), record.B4.Trim(), record.B5.Trim());
-                        }
+                            CATMAY record = (CATMAY)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATMAY));
 
-                    }
-                    finally
-                    {
-                        handle.Free();
+                            if (!string.IsNullOrWhiteSpace(record.B1) ||
+                                !string.IsNullOrWhiteSpace(record.B2) ||
+                                !string.IsNullOrWhiteSpace(record.B5))
+                            {
+                                // Agregar una nueva fila al DataGridView con los valores del registro
+                                dataGridView1.Rows.Add(record.B1.Trim(), record.B2.Trim(), record.B3.Trim(), record.B4.Trim(), record.B5.Trim());
+                            }
+
+                        }
+                        finally
+                        {
+                            handle.Free();
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                return;
             }
         }
 

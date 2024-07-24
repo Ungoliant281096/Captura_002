@@ -15,6 +15,9 @@ namespace Captura
 {
     public partial class Form1 : Form
     {
+        private string filePath = "C:/GconTA/Gcont.Arr";
+        private string fileContent;
+
         public int inicio;
         public int final;
 
@@ -22,6 +25,35 @@ namespace Captura
         public Form1()
         {
             InitializeComponent();
+            fileContent = ReadFileLine(filePath);
+
+            ConfiguracionGlobal.GeneralPath = fileContent;
+
+        }
+
+        public static string ReadFileLine(string filePath)
+        {
+            if (File.Exists(filePath))
+            {
+                return File.ReadAllText(filePath);
+            }
+            else
+            {
+                throw new FileNotFoundException("File not found.");
+            }
+        }
+
+        public static void UpdateFileLine(string newContent)
+        {
+            if (File.Exists("C:/GconTA/Gcont.Arr"))
+            {
+                
+                File.WriteAllText("C:/GconTA/Gcont.Arr", newContent);
+            }
+            else
+            {
+                throw new FileNotFoundException("File not found.");
+            }
         }
 
         private void button14_Click(object sender, EventArgs e)
@@ -29,11 +61,13 @@ namespace Captura
             if (flowLayoutPanel3.Width < 250)
             {
                 flowLayoutPanel3.Width = 250;
-                buttonMenu.Width = 245;
-                button1.Width = 245;
-                button2.Width = 245;
-                button3.Width = 245;
-                button4.Width = 245;
+                buttonMenu.Width = 240;
+                button1.Width = 240;
+                button2.Width = 240;
+                button3.Width = 240;
+                button4.Width = 240;
+                button5.Width = 240;
+                button6.Width = 240;
 
                 buttonMenu.Text = "Menu";
                 buttonMenu.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -49,21 +83,31 @@ namespace Captura
 
                 button4.Text = "Cambiar de directorio";
                 button4.TextImageRelation = TextImageRelation.ImageBeforeText;
+
+                button5.Text = "Datos de la emrpesa";
+                button5.TextImageRelation = TextImageRelation.ImageBeforeText;
+
+                button6.Text = "Estado financiero";
+                button6.TextImageRelation = TextImageRelation.ImageBeforeText;
             }
-            else if (flowLayoutPanel3.Width > 249)
+            else if (flowLayoutPanel3.Width > 235)
             {
-                flowLayoutPanel3.Width = 45;
+                flowLayoutPanel3.Width = 55;
                 buttonMenu.Width = 45;
                 button1.Width = 45;
                 button2.Width = 45;
                 button3.Width = 45;
                 button4.Width = 45;
+                button5.Width = 45;
+                button6.Width = 45;
 
                 buttonMenu.Text = string.Empty;
                 button1.Text = string.Empty;
                 button2.Text = string.Empty;
                 button3.Text = string.Empty;
                 button4.Text = string.Empty;
+                button5.Text = string.Empty;
+                button6.Text = string.Empty;
 
 
             }
@@ -101,9 +145,17 @@ namespace Captura
                 {
                     // Asignar la ruta de la carpeta seleccionada a la variable generalPath en ConfiguracionGlobal
                     ConfiguracionGlobal.GeneralPath = folderBrowserDialog.SelectedPath + "/";
+                    UpdateFileLine(ConfiguracionGlobal.GeneralPath);
 
                 }
             }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            DatosEmpresa emp = new DatosEmpresa();
+            emp.MdiParent = this;
+            emp.Show();
         }
     }
 }

@@ -34,40 +34,52 @@ namespace Captura
                 switch (comboBox1.SelectedIndex)
                 {
                     case 0:
-                        mesPoliza = "SAC01";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "01";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 1:
-                        mesPoliza = "SAC02";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "02";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 2:
-                        mesPoliza = "SAC03";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "03";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 3:
-                        mesPoliza = "SAC04";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "04";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 4:
-                        mesPoliza = "SAC05";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "05";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 5:
-                        mesPoliza = "SAC06";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "06";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 6:
-                        mesPoliza = "SAC07";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "07";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 7:
-                        mesPoliza = "SAC08";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "08";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 8:
-                        mesPoliza = "SAC09";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "09";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 9:
-                        mesPoliza = "SAC10";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "10";
+                       // ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 10:
-                        mesPoliza = "SAC11";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "11";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 11:
-                        mesPoliza = "SAC12";
+                        mesPoliza = ConfiguracionGlobal.GeneralArchive + "12";
+                        //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     default:
                         return;
@@ -156,40 +168,52 @@ namespace Captura
             switch (mesIndex)
             {
                 case 0:
-                    mesPoliza = "SAC01";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "01";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 1:
-                    mesPoliza = "SAC02";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "02";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 2:
-                    mesPoliza = "SAC03";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "03";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 3:
-                    mesPoliza = "SAC04";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "04";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 4:
-                    mesPoliza = "SAC05";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "05";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 5:
-                    mesPoliza = "SAC06";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "06";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 6:
-                    mesPoliza = "SAC07";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "07";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 7:
-                    mesPoliza = "SAC08";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "08";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 8:
-                    mesPoliza = "SAC09";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "09";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 9:
-                    mesPoliza = "SAC10";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "10";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 10:
-                    mesPoliza = "SAC11";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "11";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 11:
-                    mesPoliza = "SAC12";
+                    mesPoliza = ConfiguracionGlobal.GeneralArchive + "12";
+                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 default:
                     return;

@@ -65,6 +65,38 @@ public struct CATAUX
     public string C5;
 }
 
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
+
+public struct datosEmpresa
+{
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+    public string D1;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 60)]
+    public string D2;
+    
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
+    public string D3;
+    
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
+    public string nombreArchivo;
+    
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+    public string anioActual;
+    
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 25)]
+    public string otrosDatos;
+    
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+    public string ultimaPoliza;
+    
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 6)]
+    public string utimoRegistro;
+    
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
+    public string otrosRegistros;
+}
+
 namespace Captura
 {
     internal class Class1
@@ -73,6 +105,8 @@ namespace Captura
         public static class ConfiguracionGlobal
         {
             public static string GeneralPath { get; set; }
+            public static string GeneralArchive { get; set; }
+            public static string GuardarOperacion { get; set; }
         }
 
         public Class1()

@@ -27,36 +27,42 @@ namespace Captura
         }
         public void leerCatalogoAuxiliar(int incio, int final)
         {
-            string auxiliarPath = ConfiguracionGlobal.GeneralPath + "CATAUX";
-            int recordSize = Marshal.SizeOf(typeof(CATAUX));
-            using (FileStream CATAUX = new FileStream(auxiliarPath, FileMode.Open, FileAccess.Read))
-            using (BinaryReader reader = new BinaryReader(CATAUX))
+            try
             {
-                long numRecords = CATAUX.Length / recordSize;
-
-                for (int i = incio; i < final; i++)
+                string auxiliarPath = ConfiguracionGlobal.GeneralPath + "CATAUX";
+                int recordSize = Marshal.SizeOf(typeof(CATAUX));
+                using (FileStream CATAUX = new FileStream(auxiliarPath, FileMode.Open, FileAccess.Read))
+                using (BinaryReader reader = new BinaryReader(CATAUX))
                 {
-                    CATAUX.Seek(i * recordSize, SeekOrigin.Begin);
-                    byte[] buffer = reader.ReadBytes(recordSize);
-                    GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                    long numRecords = CATAUX.Length / recordSize;
 
-                    try
+                    for (int i = incio; i < final; i++)
                     {
-                        CATAUX record = (CATAUX)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATAUX));
+                        CATAUX.Seek(i * recordSize, SeekOrigin.Begin);
+                        byte[] buffer = reader.ReadBytes(recordSize);
+                        GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
 
-                        if (!string.IsNullOrWhiteSpace(record.C1) ||
-                            !string.IsNullOrWhiteSpace(record.C2) ||
-                            !string.IsNullOrWhiteSpace(record.C5))
+                        try
                         {
-                            // Agregar una nueva fila al DataGridView con los valores del registro
-                            dataGridView1.Rows.Add(record.C1.Trim(), record.C2.Trim(), record.C3.Trim(), record.C4.Trim(), record.C5.Trim());
+                            CATAUX record = (CATAUX)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATAUX));
+
+                            if (!string.IsNullOrWhiteSpace(record.C1) ||
+                                !string.IsNullOrWhiteSpace(record.C2) ||
+                                !string.IsNullOrWhiteSpace(record.C5))
+                            {
+                                // Agregar una nueva fila al DataGridView con los valores del registro
+                                dataGridView1.Rows.Add(record.C1.Trim(), record.C2.Trim(), record.C3.Trim(), record.C4.Trim(), record.C5.Trim());
+                            }
+                        }
+                        finally
+                        {
+                            handle.Free();
                         }
                     }
-                    finally
-                    {
-                        handle.Free();
-                    }
                 }
+            }
+            catch (Exception ex) {
+                return;
             }
         }
     }

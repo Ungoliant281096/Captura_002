@@ -71,8 +71,7 @@
             openFileDialog1 = new OpenFileDialog();
             openFileDialog2 = new OpenFileDialog();
             contextMenuStrip1 = new ContextMenuStrip(components);
-            Copiar = new ToolStripMenuItem();
-            Pegar = new ToolStripMenuItem();
+            pegarToolStripMenuItem = new ToolStripMenuItem();
             panel3.SuspendLayout();
             panel2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
@@ -429,6 +428,7 @@
             dataGridViewPoliza.BackgroundColor = SystemColors.Window;
             dataGridViewPoliza.BorderStyle = BorderStyle.None;
             dataGridViewPoliza.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewPoliza.ContextMenuStrip = contextMenuStrip1;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -464,19 +464,17 @@
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { Copiar, Pegar });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { pegarToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(68, 48);
+            contextMenuStrip1.Size = new Size(181, 48);
             // 
-            // Copiar
+            // pegarToolStripMenuItem
             // 
-            Copiar.Name = "Copiar";
-            Copiar.Size = new Size(67, 22);
-            // 
-            // Pegar
-            // 
-            Pegar.Name = "Pegar";
-            Pegar.Size = new Size(67, 22);
+            pegarToolStripMenuItem.Name = "pegarToolStripMenuItem";
+            pegarToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.V;
+            pegarToolStripMenuItem.Size = new Size(180, 22);
+            pegarToolStripMenuItem.Text = "Pegar";
+            pegarToolStripMenuItem.Click += pegarToolStripMenuItem_Click;
             // 
             // Form5
             // 
@@ -550,7 +548,6 @@
         private OpenFileDialog openFileDialog1;
         private OpenFileDialog openFileDialog2;
         private ContextMenuStrip contextMenuStrip1;
-        private ToolStripMenuItem Copiar;
-        private ToolStripMenuItem Pegar;
+        private ToolStripMenuItem pegarToolStripMenuItem;
     }
 }
