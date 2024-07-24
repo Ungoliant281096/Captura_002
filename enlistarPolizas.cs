@@ -73,6 +73,7 @@ namespace Captura
                         return;
                 }
 
+                string rutaArchivo = "C:/Users/fabian.cruz/Desktop/contabilidad/" + mesPoliza;
 
                 string rutaArchivo = ConfiguracionGlobal.GeneralPath + mesPoliza;
 
@@ -198,10 +199,8 @@ namespace Captura
                     return;
             }
 
-            string rutaArchivo = ConfiguracionGlobal.GeneralPath + mesPoliza;
 
             int recordSize = Marshal.SizeOf(typeof(Operaciones));
-            using (FileStream operacionesFileStream = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read))
             using (BinaryReader reader = new BinaryReader(operacionesFileStream))
             {
                 long fileLength = operacionesFileStream.Length;
@@ -247,7 +246,6 @@ namespace Captura
                                 break;
                             }
 
-                            if (record.Indentificador != "D")
                             {
                                 dataGridView2.Rows.Add(record.Cuenta.Trim(), record.Descripcion.Trim(), record.Fecha.Trim(), record.Importe.Trim());
                             }

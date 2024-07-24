@@ -30,6 +30,7 @@ namespace Captura
             leerCatalogoMayor();
 
         }
+
         private void leerCatalogoMayor()
         {
             string mayorpath = ConfiguracionGlobal.GeneralPath + "CATMAY";

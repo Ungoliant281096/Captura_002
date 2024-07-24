@@ -11,6 +11,31 @@ using System.Windows.Forms;
 using System.Xml;
 using static Captura.Class1;
 
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+    public string B4;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+    public string B5;
+}
+
+[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
+public struct CATAUX
+{
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 6)]
+    public string C1;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+    public string C2;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 16)]
+    public string C3;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+    public string C4;
+
+    [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
+    public string C5;
+}
 
 namespace Captura
 {

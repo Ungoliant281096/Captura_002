@@ -21,9 +21,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             menuStrip1 = new MenuStrip();
             archivoToolStripMenuItem = new ToolStripMenuItem();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            Copiar = new ToolStripMenuItem();
+            Pegar = new ToolStripMenuItem();
             button1 = new Button();
             flowLayoutPanel3 = new FlowLayoutPanel();
             buttonMenu = new Button();
@@ -32,6 +36,7 @@
             button3 = new Button();
             openFileDialog1 = new OpenFileDialog();
             menuStrip1.SuspendLayout();
+            contextMenuStrip1.SuspendLayout();
             flowLayoutPanel3.SuspendLayout();
             SuspendLayout();
             // 
@@ -50,6 +55,22 @@
             archivoToolStripMenuItem.Name = "archivoToolStripMenuItem";
             archivoToolStripMenuItem.Size = new Size(60, 20);
             archivoToolStripMenuItem.Text = "Archivo";
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { Copiar, Pegar });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(68, 48);
+            // 
+            // Copiar
+            // 
+            Copiar.Name = "Copiar";
+            Copiar.Size = new Size(67, 22);
+            // 
+            // Pegar
+            // 
+            Pegar.Name = "Pegar";
+            Pegar.Size = new Size(67, 22);
             // 
             // button1
             // 
@@ -138,6 +159,7 @@
             WindowState = FormWindowState.Maximized;
             menuStrip1.ResumeLayout(false);
             menuStrip1.PerformLayout();
+            contextMenuStrip1.ResumeLayout(false);
             flowLayoutPanel3.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
@@ -147,6 +169,9 @@
         private MenuStrip menuStrip1;
         private ToolStripMenuItem archivoToolStripMenuItem;
         private Button button1;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem Copiar;
+        private ToolStripMenuItem Pegar;
         private FlowLayoutPanel flowLayoutPanel3;
         private Button buttonMenu;
         private Button button2;
