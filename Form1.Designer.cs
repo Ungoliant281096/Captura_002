@@ -34,6 +34,9 @@
             button3 = new Button();
             button5 = new Button();
             button6 = new Button();
+            button7 = new Button();
+            button8 = new Button();
+            button9 = new Button();
             openFileDialog1 = new OpenFileDialog();
             notifyIcon1 = new NotifyIcon(components);
             contextMenuStrip1.SuspendLayout();
@@ -78,11 +81,14 @@
             flowLayoutPanel3.Controls.Add(button3);
             flowLayoutPanel3.Controls.Add(button5);
             flowLayoutPanel3.Controls.Add(button6);
+            flowLayoutPanel3.Controls.Add(button7);
+            flowLayoutPanel3.Controls.Add(button8);
+            flowLayoutPanel3.Controls.Add(button9);
             flowLayoutPanel3.Dock = DockStyle.Right;
             flowLayoutPanel3.FlowDirection = FlowDirection.TopDown;
             flowLayoutPanel3.Location = new Point(1071, 0);
             flowLayoutPanel3.Name = "flowLayoutPanel3";
-            flowLayoutPanel3.Size = new Size(55, 514);
+            flowLayoutPanel3.Size = new Size(55, 535);
             flowLayoutPanel3.TabIndex = 12;
             // 
             // buttonMenu
@@ -150,6 +156,36 @@
             button6.TextAlign = ContentAlignment.MiddleLeft;
             button6.UseVisualStyleBackColor = true;
             // 
+            // button7
+            // 
+            button7.Image = (Image)resources.GetObject("button7.Image");
+            button7.Location = new Point(3, 360);
+            button7.Name = "button7";
+            button7.Size = new Size(50, 45);
+            button7.TabIndex = 12;
+            button7.TextAlign = ContentAlignment.MiddleLeft;
+            button7.UseVisualStyleBackColor = true;
+            // 
+            // button8
+            // 
+            button8.Image = (Image)resources.GetObject("button8.Image");
+            button8.Location = new Point(3, 411);
+            button8.Name = "button8";
+            button8.Size = new Size(50, 45);
+            button8.TabIndex = 13;
+            button8.TextAlign = ContentAlignment.MiddleLeft;
+            button8.UseVisualStyleBackColor = true;
+            // 
+            // button9
+            // 
+            button9.Image = (Image)resources.GetObject("button9.Image");
+            button9.Location = new Point(3, 462);
+            button9.Name = "button9";
+            button9.Size = new Size(50, 45);
+            button9.TabIndex = 14;
+            button9.TextAlign = ContentAlignment.MiddleLeft;
+            button9.UseVisualStyleBackColor = true;
+            // 
             // openFileDialog1
             // 
             openFileDialog1.FileName = "openFileDialog1";
@@ -163,7 +199,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1126, 514);
+            ClientSize = new Size(1126, 535);
             Controls.Add(flowLayoutPanel3);
             Icon = (Icon)resources.GetObject("$this.Icon");
             IsMdiContainer = true;
@@ -189,5 +225,8 @@
         private Button button5;
         private Button button6;
         private NotifyIcon notifyIcon1;
+        private Button button7;
+        private Button button8;
+        private Button button9;
     }
 }

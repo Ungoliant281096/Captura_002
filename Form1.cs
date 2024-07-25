@@ -68,6 +68,9 @@ namespace Captura
                 button4.Width = 240;
                 button5.Width = 240;
                 button6.Width = 240;
+                button7.Width = 240;
+                button8.Width = 240;
+                button9.Width = 240;
 
                 buttonMenu.Text = "Menu";
                 buttonMenu.TextImageRelation = TextImageRelation.ImageBeforeText;
@@ -89,6 +92,15 @@ namespace Captura
 
                 button6.Text = "Estado financiero";
                 button6.TextImageRelation = TextImageRelation.ImageBeforeText;
+
+                button7.Text = "Auxiliar de mayor";
+                button7.TextImageRelation = TextImageRelation.ImageBeforeText;
+
+                button8.Text = "Directorio de costos";
+                button8.TextImageRelation = TextImageRelation.ImageBeforeText;
+
+                button9.Text = "Verificar actualización";
+                button9.TextImageRelation = TextImageRelation.ImageBeforeText;
             }
             else if (flowLayoutPanel3.Width > 235)
             {
@@ -100,6 +112,9 @@ namespace Captura
                 button4.Width = 45;
                 button5.Width = 45;
                 button6.Width = 45;
+                button7.Width = 45;
+                button8.Width = 45;
+                button9.Width = 45;
 
                 buttonMenu.Text = string.Empty;
                 button1.Text = string.Empty;
@@ -108,8 +123,9 @@ namespace Captura
                 button4.Text = string.Empty;
                 button5.Text = string.Empty;
                 button6.Text = string.Empty;
-
-
+                button7.Text = string.Empty;
+                button8.Text = string.Empty;
+                button9.Text = string.Empty;
             }
         }
 

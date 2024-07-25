@@ -22,7 +22,7 @@ namespace Captura
 
         private void Form3_Load(object sender, EventArgs e)
         {
-            dataGridView1.ColumnCount = 5;
+            dataGridView1.ColumnCount = 6;
 
         }
         public void leerCatalogoAuxiliar(int incio, int final)
@@ -50,8 +50,8 @@ namespace Captura
                                 !string.IsNullOrWhiteSpace(record.C2) ||
                                 !string.IsNullOrWhiteSpace(record.C5))
                             {
-                                // Agregar una nueva fila al DataGridView con los valores del registro
-                                dataGridView1.Rows.Add(record.C1.Trim(), record.C2.Trim(), record.C3.Trim(), record.C4.Trim(), record.C5.Trim());
+
+                                dataGridView1.Rows.Add(i, record.C1.Trim(), record.C2.Trim(), record.C3.Trim(), record.C4.Trim(), record.C5.Trim());
                             }
                         }
                         finally

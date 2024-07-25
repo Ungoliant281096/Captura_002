@@ -80,13 +80,8 @@ namespace Captura
             {
                 D1 = textBox1.Text,
                 D2 = textBox2.Text,
-                D3 = "",
                 nombreArchivo = textBox4.Text,
                 anioActual = textBox3.Text,
-                otrosDatos = "",
-                ultimaPoliza = "",
-                utimoRegistro = "",
-                otrosRegistros = ""
             };
 
             actualizarPrimerRegistro(nuevoRegistro);
