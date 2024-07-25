@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.IO;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows.Forms;
 
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
 public struct Operaciones
@@ -66,7 +64,6 @@ public struct CATAUX
 }
 
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
-
 public struct datosEmpresa
 {
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
@@ -74,44 +71,81 @@ public struct datosEmpresa
 
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 60)]
     public string D2;
-    
+
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 45)]
     public string D3;
-    
+
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 15)]
     public string nombreArchivo;
-    
+
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
     public string anioActual;
-    
+
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 25)]
     public string otrosDatos;
-    
+
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 5)]
     public string ultimaPoliza;
-    
+
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 6)]
     public string utimoRegistro;
-    
+
     [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 11)]
     public string otrosRegistros;
 }
 
-namespace Captura
+public static class ConfiguracionGlobal
 {
-    internal class Class1
+    public static string GeneralPath { get; set; }
+    public static string GeneralArchive { get; set; }
+    public static string GuardarOperacion { get; set; }
+}
+
+public static class variablesGlobales
+{
+    public static string B1Catmay { get; set; }
+    public static string B2Catmay { get; set; }
+    public static string B3Catmay { get; set; }
+    public static string B4Catmay { get; set; }
+    public static string B5Catmay { get; set; }
+
+}
+public static class ArchivoManager
+{
+    public static void AbrirArchivoCATMAY()
     {
-        // Declarar la variable de tipo string
-        public static class ConfiguracionGlobal
+        try
         {
-            public static string GeneralPath { get; set; }
-            public static string GeneralArchive { get; set; }
-            public static string GuardarOperacion { get; set; }
+            string mayorPath = ConfiguracionGlobal.GeneralPath + "CATMAY";
+            int recordSize = Marshal.SizeOf(typeof(CATMAY));
+            using (FileStream fileStream = new FileStream(mayorPath, FileMode.Open, FileAccess.Read))
+            using (BinaryReader reader = new BinaryReader(fileStream))
+            {
+                long numRecords = fileStream.Length / recordSize;
+
+                for (int i = 0; i < numRecords; i++)
+                {
+                    fileStream.Seek(i * recordSize, SeekOrigin.Begin);
+                    byte[] buffer = reader.ReadBytes(recordSize);
+                    GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+
+                    try
+                    {
+                        CATMAY record = (CATMAY)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATMAY));
+                        // Asigna los valores del registro a variables globales o realiza otras operaciones necesarias
+
+
+                    }
+                    finally
+                    {
+                        handle.Free();
+                    }
+                }
+            }
         }
-
-        public Class1()
+        catch (Exception ex)
         {
-
+            MessageBox.Show($"Error al abrir el archivo: {ex.Message}");
         }
     }
 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using System.Xml;
-using static Captura.Class1;
+//using static Captura.Class1;
 
 namespace Captura
 {

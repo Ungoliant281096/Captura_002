@@ -9,7 +9,7 @@ using System.Reflection.Metadata;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Xml;
-using static Captura.Class1;
+//using static Captura.Class1;
 
 namespace Captura
 {
