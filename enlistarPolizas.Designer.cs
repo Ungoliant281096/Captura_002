@@ -99,12 +99,12 @@
             // 
             // dataGridView2
             // 
-            dataGridView2.AllowUserToAddRows = false;
             dataGridView2.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView2.Location = new Point(432, 79);
             dataGridView2.Name = "dataGridView2";
             dataGridView2.Size = new Size(671, 361);
             dataGridView2.TabIndex = 5;
+            dataGridView2.CellEndEdit += dataGridView2_CellEndEdit;
             // 
             // label2
             // 
@@ -202,6 +202,7 @@
             Name = "enlistarPolizas";
             Text = "enlistarPolizas";
             Load += enlistarPolizas_Load;
+            Resize += enlistarPolizas_Resize;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             flowLayoutPanel1.ResumeLayout(false);

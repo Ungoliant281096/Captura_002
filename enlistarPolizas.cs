@@ -9,16 +9,57 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static Captura.Class1;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Captura
 {
+
     public partial class enlistarPolizas : Form
     {
+        int inicio;
+        int final;
         public enlistarPolizas()
         {
             InitializeComponent();
             InitializeDataGridView();
         }
+        private void InitializeDataGridView()
+        {
+            dataGridView1.ColumnCount = 3;
+            dataGridView2.ColumnCount = 8;
+
+            dataGridView1.Columns[0].HeaderText = "#";
+            dataGridView1.Columns[1].HeaderText = "N°";
+            dataGridView1.Columns[2].HeaderText = "Descripción";
+
+            dataGridView1.Columns[0].Width = 35;
+            dataGridView1.Columns[1].Width = 40;
+            dataGridView1.Columns[2].Width = 220;
+
+            dataGridView1.Columns[0].ReadOnly = true;
+            dataGridView1.Columns[1].ReadOnly = true;
+
+            dataGridView2.Columns[0].HeaderText = "Cuenta";
+            dataGridView2.Columns[1].HeaderText = "Subcuenta";
+            dataGridView2.Columns[2].HeaderText = "Nombre";
+            dataGridView2.Columns[3].HeaderText = "Parcial";
+            dataGridView2.Columns[4].HeaderText = "Debe";
+            dataGridView2.Columns[5].HeaderText = "Haber";
+            dataGridView2.Columns[6].HeaderText = "Redaccion";
+            dataGridView2.Columns[7].HeaderText = "Folio fiscal";
+
+
+            dataGridView2.Columns[0].Width = 50;
+            dataGridView2.Columns[1].Width = 50;
+            dataGridView2.Columns[2].Width = 250;
+            dataGridView2.Columns[3].Width = 100;
+            dataGridView2.Columns[4].Width = 100;
+            dataGridView2.Columns[5].Width = 100;
+            dataGridView2.Columns[6].Width = 250;
+            dataGridView2.Columns[7].Width = 250;
+
+        }
+
 
         private void enlistarPolizas_Load(object sender, EventArgs e)
         {
@@ -28,7 +69,6 @@ namespace Captura
         {
             try
             {
-
                 string mesPoliza;
 
                 switch (comboBox1.SelectedIndex)
@@ -71,7 +111,7 @@ namespace Captura
                         break;
                     case 9:
                         mesPoliza = ConfiguracionGlobal.GeneralArchive + "10";
-                       // ConfiguracionGlobal.GuardarOperacion = mesPoliza;
+                        // ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                         break;
                     case 10:
                         mesPoliza = ConfiguracionGlobal.GeneralArchive + "11";
@@ -84,7 +124,7 @@ namespace Captura
                     default:
                         return;
                 }
-
+                // instrucciones para abrir el random en mapa de bytes
                 string rutaArchivo = ConfiguracionGlobal.GeneralPath + mesPoliza;
                 int recordSize = Marshal.SizeOf(typeof(Operaciones));
                 using (FileStream Operaciones = new FileStream(rutaArchivo, FileMode.Open, FileAccess.Read))
@@ -121,23 +161,6 @@ namespace Captura
                 MessageBox.Show("No encuentro el mes de operación.");
             }
         }
-        private void InitializeDataGridView()
-        {
-            dataGridView1.ColumnCount = 3;
-            dataGridView2.ColumnCount = 6;
-
-            dataGridView1.Columns[0].HeaderText = "#";
-            dataGridView1.Columns[1].HeaderText = "N°";
-            dataGridView1.Columns[2].HeaderText = "Descripción";
-
-            dataGridView1.Columns[0].Width = 35;
-            dataGridView1.Columns[1].Width = 40;
-            dataGridView1.Columns[2].Width = 220;
-
-            dataGridView1.Columns[0].ReadOnly = true;
-            dataGridView1.Columns[1].ReadOnly = true;
-        }
-
         private void dataGridView1_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             // Asegúrate de que la fila y columna son válidas
@@ -169,51 +192,39 @@ namespace Captura
             {
                 case 0:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "01";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 1:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "02";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 2:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "03";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 3:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "04";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 4:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "05";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 5:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "06";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 6:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "07";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 7:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "08";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 8:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "09";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 9:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "10";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 10:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "11";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 case 11:
                     mesPoliza = ConfiguracionGlobal.GeneralArchive + "12";
-                    //ConfiguracionGlobal.GuardarOperacion = mesPoliza;
                     break;
                 default:
                     return;
@@ -266,14 +277,42 @@ namespace Captura
                             {
                                 break;
                             }
-                            if(record.Indentificador != "D")
+
+                            if (record.Indentificador == "B") //cuentas
                             {
-                                dataGridView2.Rows.Add(record.Cuenta.Trim(), record.Descripcion.Trim(), record.Fecha.Trim(), record.Importe.Trim());
+
+                                if (decimal.Parse(record.Importe) > 0)
+                                {// Positivo debe
+                                 // cuenta , subcuenta, nombre, parcial, debe, haber, redaccion, folio
+                                    dataGridView2.Rows.Add(record.Cuenta.Trim(), "", "", "", record.Importe, "", record.Descripcion.Trim());
+                                }
+                                else
+                                {// Negativo haber
+                                 // cuenta , subcuenta, nombre, parcial, debe, haber, redaccion, folio
+                                    dataGridView2.Rows.Add(record.Cuenta.Trim(), "", "", "", "", record.Importe, record.Descripcion.Trim());
+
+                                }
                             }
-                            else
+                            else if (record.Indentificador == "C") //subcuentas
+                            {
+
+                                if (decimal.Parse(record.Importe) > 0)
+                                {// Positivo debe
+                                 // cuenta , subcuenta, nombre, parcial, debe, haber, redaccion, folio
+                                    dataGridView2.Rows.Add("", record.Cuenta.Trim(), "", record.Importe, "", "", record.Descripcion.Trim());
+                                }
+                                else
+                                {// Negativo haber
+                                 // cuenta , subcuenta, nombre, parcial, debe, haber, redaccion, folio
+                                    dataGridView2.Rows.Add("", record.Cuenta.Trim(), "", record.Importe, "", "", record.Descripcion.Trim());
+
+                                }
+                            }
+                            else if (record.Indentificador == "D") //encasbezdo
                             {
                                 label4.Text = ("Folio fiscal: " + record.Cuenta.Trim() + record.Descripcion.Trim());
                             }
+
                         }
                         finally
                         {
@@ -292,5 +331,148 @@ namespace Captura
         {
             printPreviewDialog1.ShowDialog();
         }
+
+        private void enlistarPolizas_Resize(object sender, EventArgs e)
+        {
+            dataGridView2.Width = this.ClientSize.Width - 450;
+            dataGridView2.Height = this.ClientSize.Height - dataGridView2.Top - 20;
+            dataGridView1.Height = this.ClientSize.Height - dataGridView1.Top - 20;
+        }
+
+        private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            string valor = dataGridView2.CurrentCell.Value?.ToString();
+
+            switch (e.ColumnIndex)
+            {
+                case 0:
+                    HandleCuentaEdit(valor, e.RowIndex);
+                    break;
+
+                case 1:
+                    HandleSubcuentaEdit(valor, e.RowIndex);
+                    break;
+            }
+        }
+
+        private void HandleCuentaEdit(string valor, int rowIndex)
+        {
+            if (!string.IsNullOrEmpty(valor))
+            {
+                SearchRecordByB1(valor);
+            }
+
+            SetCurrentCell(rowIndex, 1);
+        }
+        private void HandleSubcuentaEdit(string valor, int rowIndex)
+        {
+            if (!string.IsNullOrEmpty(valor))
+            {
+                SearchRecordByC1(valor, inicio, final);
+            }
+
+            SetCurrentCell(rowIndex, 3);
+        }
+        private void SearchRecordByC1(string searchValue, int inicioC, int finalC)
+        {
+            try
+            {
+                string auxiliarPath = ConfiguracionGlobal.GeneralPath + "CATAUX";
+                int recordSize = Marshal.SizeOf(typeof(CATAUX));
+                using (FileStream CATAUX = new FileStream(auxiliarPath, FileMode.Open, FileAccess.Read))
+                using (BinaryReader reader = new BinaryReader(CATAUX))
+                {
+                    long numRecords = CATAUX.Length / recordSize;
+                    string cuenta = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex - 1].Cells[0].Value?.ToString() ?? string.Empty;
+
+                    for (int i = inicioC - 1; i < finalC - 1; i++)
+                    {
+                        CATAUX.Seek(i * recordSize, SeekOrigin.Begin);
+                        byte[] buffer = reader.ReadBytes(recordSize);
+                        GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+
+                        try
+                        {
+                            CATAUX record = (CATAUX)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATAUX));
+
+                            if (i.ToString() == searchValue)
+                            {
+                                int currentRowIndex = dataGridView2.CurrentCell.RowIndex;
+                                DataGridViewRow currentRow = dataGridView2.Rows[currentRowIndex];
+                                currentRow.Cells[2].Value = record.C2;
+
+                                return;
+                            }
+                        }
+                        finally
+                        {
+                            handle.Free();
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show($"No se encontró un registro {searchValue}");
+            }
+        }
+
+        private void SearchRecordByB1(string searchValue)
+        {
+            try
+            {
+                string mayorPath = ConfiguracionGlobal.GeneralPath + "CATMAY";
+                int recordSize = Marshal.SizeOf(typeof(CATMAY));
+                using (FileStream CATMAY = new FileStream(mayorPath, FileMode.Open, FileAccess.Read))
+                using (BinaryReader reader = new BinaryReader(CATMAY))
+                {
+                    long numRecords = CATMAY.Length / recordSize;
+                    for (int i = 0; i < numRecords; i++)
+                    {
+                        CATMAY.Seek(i * recordSize, SeekOrigin.Begin);
+                        byte[] buffer = reader.ReadBytes(recordSize);
+                        GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+
+                        try
+                        {
+                            CATMAY record = (CATMAY)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATMAY));
+
+                            if (record.B1.Trim() == searchValue)
+                            {
+                                int currentRowIndex = dataGridView2.CurrentCell.RowIndex;
+                                DataGridViewRow currentRow = dataGridView2.Rows[currentRowIndex];
+                                dataGridView2.Rows[currentRowIndex].Cells[2].Style.Font = new Font(dataGridView2.Font, FontStyle.Bold);
+                                currentRow.Cells[2].Value = record.B2;
+
+                                inicio = int.Parse(record.B4);
+                                final = int.Parse(record.B5);
+
+                                return;
+                            }
+                        }
+                        finally
+                        {
+                            handle.Free();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"No se encontró un registro {searchValue}");
+            }
+        }
+        private void SetCurrentCell(int rowIndex, int columnIndex)
+        {
+            try
+            {
+                dataGridView2.CurrentCell = dataGridView2.Rows[rowIndex].Cells[columnIndex];
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
+
     }
 }
