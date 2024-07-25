@@ -26,49 +26,6 @@ namespace Captura
         {
             SaveGridDataToFile(dataGridViewPoliza);
         }
-        private void sumarDebeHaber()
-        {
-            decimal sumColumn4 = 0;
-            decimal sumColumn5 = 0;
-
-            foreach (DataGridViewRow row in dataGridViewPoliza.Rows)
-            {
-                if (row.Cells[4].Value != null && !string.IsNullOrWhiteSpace(row.Cells[4].Value.ToString()))
-                {
-                    if (decimal.TryParse(row.Cells[4].Value.ToString(), out decimal value4))
-                    {
-                        sumColumn4 += value4;
-                    }
-                }
-                if (row.Cells[5].Value != null && !string.IsNullOrWhiteSpace(row.Cells[5].Value.ToString()))
-                {
-                    if (decimal.TryParse(row.Cells[5].Value.ToString(), out decimal value5))
-                    {
-                        sumColumn5 += value5;
-                    }
-                }
-            }
-
-            decimal sumaTotal = sumColumn4 + sumColumn5;
-
-            textBox10.Text = sumColumn4.ToString("#,##0.00");
-            textBox11.Text = sumColumn5.ToString("#,##0.00");
-            textBox12.Text = sumaTotal.ToString("#,##0.00");
-
-            if (sumaTotal < 0)
-            {
-                textBox12.ForeColor = Color.Red;
-            }
-            else if (sumaTotal > 0)
-            {
-                textBox12.ForeColor = Color.Green;
-            }
-            else if (sumaTotal == 0)
-            {
-                textBox12.ForeColor = Color.Blue;
-            }
-
-        }
         public void SaveGridDataToFile(DataGridView dataGridView)
         {
             string filePath = ConfiguracionGlobal.GeneralArchive + ConfiguracionGlobal.GuardarOperacion;
@@ -131,6 +88,7 @@ namespace Captura
             dataGridViewPoliza.Columns[4].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
             dataGridViewPoliza.Columns[5].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
 
+            dataGridViewPoliza.Columns[3].DefaultCellStyle.Format = "N2";
             dataGridViewPoliza.Columns[4].DefaultCellStyle.Format = "N2";
             dataGridViewPoliza.Columns[5].DefaultCellStyle.Format = "N2";
 
@@ -168,7 +126,7 @@ namespace Captura
                     HandleParcialEdit(valor);
                     break;
             }
-            sumarDebeHaber();
+            acumularParcial();
         }
         private void HandleCuentaEdit(string valor, int rowIndex)
         {
@@ -234,6 +192,7 @@ namespace Captura
                                 int currentRowIndex = dataGridViewPoliza.CurrentCell.RowIndex;
                                 DataGridViewRow currentRow = dataGridViewPoliza.Rows[currentRowIndex];
                                 dataGridViewPoliza.Rows[currentRowIndex].Cells[2].Style.Font = new Font(dataGridViewPoliza.Font, FontStyle.Bold);
+                                currentRow.DefaultCellStyle.BackColor = Color.LightYellow;
                                 currentRow.Cells[2].Value = record.B2;
 
                                 inicio = int.Parse(record.B4);
@@ -280,6 +239,7 @@ namespace Captura
                             {
                                 int currentRowIndex = dataGridViewPoliza.CurrentCell.RowIndex;
                                 DataGridViewRow currentRow = dataGridViewPoliza.Rows[currentRowIndex];
+                                currentRow.DefaultCellStyle.BackColor = Color.White;
                                 currentRow.Cells[2].Value = record.C2;
 
                                 currentRow.Cells[6].Value = textBox2.Text;
@@ -551,5 +511,80 @@ namespace Captura
                     return;
                 }
         }
+        private void acumularParcial()
+        {
+            try
+            {
+                int currentRowIndex = dataGridViewPoliza.CurrentCell.RowIndex;
+
+                for (int i = 0; i < dataGridViewPoliza.RowCount; i++)
+                {
+                    // Verificar si la celda no es nula antes de intentar acceder a su valor
+                    if (dataGridViewPoliza.Rows[i].Cells[0].Value != null)
+                    {
+
+                        SumarMovimientos(dataGridViewPoliza, dataGridViewPoliza.Rows[i].Cells[0].Value?.ToString());
+
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+        }
+        private void SumarMovimientos(DataGridView dataGridView, string cuenta)
+        {
+            decimal sumaDebito = 0;
+            decimal sumaCredito = 0;
+
+            foreach (DataGridViewRow row in dataGridView.Rows)
+            {
+                // Verificar si la fila contiene la cuenta
+                if (row.Cells[0].Value != null && row.Cells[0].Value.ToString() == cuenta)
+                {
+                    // Iterar sobre las filas siguientes para sumar los movimientos
+                    int rowIndex = row.Index + 1;
+                    while (rowIndex < dataGridView.RowCount && (dataGridView.Rows[rowIndex].Cells[0].Value == null || dataGridView.Rows[rowIndex].Cells[0].Value.ToString() == ""))
+                    {
+                        if (dataGridView.Rows[rowIndex].Cells[4].Value != null && decimal.TryParse(dataGridView.Rows[rowIndex].Cells[4].Value.ToString(), out decimal debito))
+                        {
+                            sumaDebito += debito;
+                        }
+                        if (dataGridView.Rows[rowIndex].Cells[5].Value != null && decimal.TryParse(dataGridView.Rows[rowIndex].Cells[5].Value.ToString(), out decimal credito))
+                        {
+                            sumaCredito += credito;
+                        }
+                        rowIndex++;
+                    }
+
+                    // Actualizar la fila de la cuenta con las sumas
+                    //row.Cells[4].Value = sumaDebito;
+                    //row.Cells[5].Value = sumaCredito;
+
+                    decimal sumaTotalCuenta;
+
+                    sumaTotalCuenta = sumaDebito + sumaCredito;
+
+                    if (sumaTotalCuenta < 0)
+                    {
+                        row.Cells[4].Value = null;
+                        row.Cells[5].Value = sumaTotalCuenta;
+
+                    }
+                    else
+                    {
+                        row.Cells[4].Value = sumaTotalCuenta;
+                        row.Cells[5].Value = null;
+                    }
+
+                    // Resetear las sumas para la próxima cuenta
+                    sumaDebito = 0;
+                    sumaCredito = 0;
+                }
+            }
+        }
+
+
     }
 }

@@ -267,7 +267,7 @@
             // 
             // label10
             // 
-            label10.BackColor = SystemColors.Info;
+            label10.BackColor = Color.Ivory;
             label10.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             label10.Location = new Point(380, 17);
             label10.Name = "label10";

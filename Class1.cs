@@ -2,6 +2,7 @@
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 1)]
 public struct Operaciones
@@ -133,8 +134,6 @@ public static class ArchivoManager
                     {
                         CATMAY record = (CATMAY)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(CATMAY));
                         // Asigna los valores del registro a variables globales o realiza otras operaciones necesarias
-
-
                     }
                     finally
                     {
@@ -148,4 +147,43 @@ public static class ArchivoManager
             MessageBox.Show($"Error al abrir el archivo: {ex.Message}");
         }
     }
+    public static void leerDatosEmpresa()
+    {
+        try
+        {
+            string filePath = "C:/GconTA/Gcont.Arr";
+            string fileContent;
+
+            if (File.Exists(filePath))
+            {
+                fileContent = File.ReadAllText(filePath);
+            }
+            else
+            {
+                throw new FileNotFoundException("File not found.");
+            }
+
+            ConfiguracionGlobal.GeneralPath = fileContent;
+
+            string rutaDatos = Path.Combine(ConfiguracionGlobal.GeneralPath, "DATOS");
+            int recordSize = Marshal.SizeOf(typeof(datosEmpresa));
+
+            using (FileStream datosEmpresaStream = new FileStream(rutaDatos, FileMode.Open, FileAccess.Read))
+            using (BinaryReader reader = new BinaryReader(datosEmpresaStream))
+            {
+                datosEmpresaStream.Seek(0, SeekOrigin.Begin);
+                byte[] buffer = reader.ReadBytes(recordSize);
+                GCHandle handle = GCHandle.Alloc(buffer, GCHandleType.Pinned);
+                datosEmpresa record = (datosEmpresa)Marshal.PtrToStructure(handle.AddrOfPinnedObject(), typeof(datosEmpresa));
+                handle.Free();
+
+                ConfiguracionGlobal.GeneralArchive = record.nombreArchivo.Trim();
+            }
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message);
+        }
+    }
+
 }

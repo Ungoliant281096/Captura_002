@@ -15,8 +15,6 @@ namespace Captura
 {
     public partial class Form1 : Form
     {
-        private string filePath = "C:/GconTA/Gcont.Arr";
-        private string fileContent;
 
         public int inicio;
         public int final;
@@ -25,23 +23,10 @@ namespace Captura
         public Form1()
         {
             InitializeComponent();
-            fileContent = ReadFileLine(filePath);
 
-            ConfiguracionGlobal.GeneralPath = fileContent;
-
+            ArchivoManager.leerDatosEmpresa();
         }
 
-        public static string ReadFileLine(string filePath)
-        {
-            if (File.Exists(filePath))
-            {
-                return File.ReadAllText(filePath);
-            }
-            else
-            {
-                throw new FileNotFoundException("File not found.");
-            }
-        }
 
         public static void UpdateFileLine(string newContent)
         {
