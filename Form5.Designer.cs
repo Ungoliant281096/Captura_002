@@ -122,7 +122,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.Control;
+            panel2.BackColor = SystemColors.GradientInactiveCaption;
             panel2.Controls.Add(textBox9);
             panel2.Controls.Add(label11);
             panel2.Controls.Add(textBox8);
@@ -170,7 +170,7 @@
             // 
             // label9
             // 
-            label9.BackColor = SystemColors.Control;
+            label9.BackColor = SystemColors.GradientInactiveCaption;
             label9.Font = new Font("Segoe UI", 12F);
             label9.Location = new Point(7, 68);
             label9.Name = "label9";
@@ -189,7 +189,7 @@
             // 
             // label8
             // 
-            label8.BackColor = SystemColors.Control;
+            label8.BackColor = SystemColors.GradientInactiveCaption;
             label8.Font = new Font("Segoe UI", 12F);
             label8.Location = new Point(7, 96);
             label8.Name = "label8";
@@ -226,7 +226,7 @@
             // 
             // label5
             // 
-            label5.BackColor = SystemColors.Control;
+            label5.BackColor = SystemColors.GradientInactiveCaption;
             label5.Font = new Font("Segoe UI", 12F);
             label5.Location = new Point(7, 124);
             label5.Name = "label5";
@@ -236,7 +236,7 @@
             // 
             // label6
             // 
-            label6.BackColor = SystemColors.Control;
+            label6.BackColor = SystemColors.GradientInactiveCaption;
             label6.Font = new Font("Segoe UI", 12F);
             label6.Location = new Point(7, 40);
             label6.Name = "label6";
@@ -246,7 +246,7 @@
             // 
             // label7
             // 
-            label7.BackColor = SystemColors.Control;
+            label7.BackColor = SystemColors.GradientInactiveCaption;
             label7.Font = new Font("Segoe UI", 12F);
             label7.Location = new Point(7, 9);
             label7.Name = "label7";

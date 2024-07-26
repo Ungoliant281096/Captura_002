@@ -77,7 +77,6 @@ namespace Captura
         private void InitializeDataGridView()
         {
             dataGridViewPoliza.ColumnCount = 7;
-            dataGridViewPoliza.RowCount = 300;
 
             dataGridViewPoliza.Columns[0].HeaderText = "Cuenta";
             dataGridViewPoliza.Columns[1].HeaderText = "Subcuenta";

@@ -27,20 +27,6 @@ namespace Captura
             ArchivoManager.leerDatosEmpresa();
         }
 
-
-        public static void UpdateFileLine(string newContent)
-        {
-            if (File.Exists("C:/GconTA/Gcont.Arr"))
-            {
-                
-                File.WriteAllText("C:/GconTA/Gcont.Arr", newContent);
-            }
-            else
-            {
-                throw new FileNotFoundException("File not found.");
-            }
-        }
-
         private void button14_Click(object sender, EventArgs e)
         {
             if (flowLayoutPanel3.Width < 250)
@@ -72,7 +58,7 @@ namespace Captura
                 button4.Text = "Cambiar de directorio";
                 button4.TextImageRelation = TextImageRelation.ImageBeforeText;
 
-                button5.Text = "Datos de la emrpesa";
+                button5.Text = "Datos de la empresa";
                 button5.TextImageRelation = TextImageRelation.ImageBeforeText;
 
                 button6.Text = "Estado financiero";
@@ -86,6 +72,16 @@ namespace Captura
 
                 button9.Text = "Verificar actualización";
                 button9.TextImageRelation = TextImageRelation.ImageBeforeText;
+
+                button1.ImageAlign = ContentAlignment.MiddleLeft;
+                button2.ImageAlign = ContentAlignment.MiddleLeft;
+                button3.ImageAlign = ContentAlignment.MiddleLeft;
+                button4.ImageAlign = ContentAlignment.MiddleLeft;
+                button5.ImageAlign = ContentAlignment.MiddleLeft;
+                button6.ImageAlign = ContentAlignment.MiddleLeft;
+                button7.ImageAlign = ContentAlignment.MiddleLeft;
+                button8.ImageAlign = ContentAlignment.MiddleLeft;
+                button9.ImageAlign = ContentAlignment.MiddleLeft;
             }
             else if (flowLayoutPanel3.Width > 235)
             {
@@ -139,17 +135,9 @@ namespace Captura
 
         private void button4_Click(object sender, EventArgs e)
         {
-            using (FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog())
-            {
-                // Mostrar el diálogo de selección de carpeta
-                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
-                {
-                    // Asignar la ruta de la carpeta seleccionada a la variable generalPath en ConfiguracionGlobal
-                    ConfiguracionGlobal.GeneralPath = folderBrowserDialog.SelectedPath + "/";
-                    UpdateFileLine(ConfiguracionGlobal.GeneralPath);
-
-                }
-            }
+            Form6 pathManager = new Form6();
+            pathManager.MdiParent = this;
+            pathManager.Show();
         }
 
         private void button5_Click(object sender, EventArgs e)

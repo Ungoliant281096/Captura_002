@@ -61,18 +61,23 @@
             // 
             // button1
             // 
+            button1.BackColor = Color.FromArgb(238, 238, 238);
+            button1.FlatAppearance.BorderSize = 0;
+            button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 12F);
+            button1.ForeColor = Color.Black;
             button1.Image = (Image)resources.GetObject("button1.Image");
             button1.Location = new Point(3, 105);
             button1.Name = "button1";
             button1.Size = new Size(50, 45);
             button1.TabIndex = 0;
             button1.TextAlign = ContentAlignment.MiddleLeft;
-            button1.UseVisualStyleBackColor = true;
+            button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
             // 
             // flowLayoutPanel3
             // 
-            flowLayoutPanel3.BackColor = SystemColors.Menu;
+            flowLayoutPanel3.BackColor = Color.FromArgb(238, 238, 238);
             flowLayoutPanel3.BorderStyle = BorderStyle.FixedSingle;
             flowLayoutPanel3.Controls.Add(buttonMenu);
             flowLayoutPanel3.Controls.Add(button4);
@@ -93,98 +98,143 @@
             // 
             // buttonMenu
             // 
+            buttonMenu.BackColor = Color.FromArgb(238, 238, 238);
+            buttonMenu.FlatAppearance.BorderSize = 0;
+            buttonMenu.FlatStyle = FlatStyle.Flat;
+            buttonMenu.Font = new Font("Segoe UI", 12F);
+            buttonMenu.ForeColor = Color.Black;
             buttonMenu.Image = (Image)resources.GetObject("buttonMenu.Image");
             buttonMenu.Location = new Point(3, 3);
             buttonMenu.Name = "buttonMenu";
             buttonMenu.Size = new Size(50, 45);
             buttonMenu.TabIndex = 6;
             buttonMenu.TextAlign = ContentAlignment.MiddleLeft;
-            buttonMenu.UseVisualStyleBackColor = true;
+            buttonMenu.UseVisualStyleBackColor = false;
             buttonMenu.Click += button14_Click;
             // 
             // button4
             // 
+            button4.BackColor = Color.FromArgb(238, 238, 238);
+            button4.FlatAppearance.BorderSize = 0;
+            button4.FlatStyle = FlatStyle.Flat;
+            button4.Font = new Font("Segoe UI", 12F);
+            button4.ForeColor = Color.Black;
             button4.Image = (Image)resources.GetObject("button4.Image");
             button4.Location = new Point(3, 54);
             button4.Name = "button4";
             button4.Size = new Size(50, 45);
             button4.TabIndex = 9;
             button4.TextAlign = ContentAlignment.MiddleLeft;
-            button4.UseVisualStyleBackColor = true;
+            button4.UseVisualStyleBackColor = false;
             button4.Click += button4_Click;
             // 
             // button2
             // 
+            button2.BackColor = Color.FromArgb(238, 238, 238);
+            button2.FlatAppearance.BorderSize = 0;
+            button2.FlatStyle = FlatStyle.Flat;
+            button2.Font = new Font("Segoe UI", 12F);
+            button2.ForeColor = Color.Black;
             button2.Image = (Image)resources.GetObject("button2.Image");
             button2.Location = new Point(3, 156);
             button2.Name = "button2";
             button2.Size = new Size(50, 45);
             button2.TabIndex = 7;
             button2.TextAlign = ContentAlignment.MiddleLeft;
-            button2.UseVisualStyleBackColor = true;
+            button2.UseVisualStyleBackColor = false;
             button2.Click += button2_Click;
             // 
             // button3
             // 
+            button3.BackColor = Color.FromArgb(238, 238, 238);
+            button3.FlatAppearance.BorderSize = 0;
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.Font = new Font("Segoe UI", 12F);
+            button3.ForeColor = Color.Black;
             button3.Image = (Image)resources.GetObject("button3.Image");
             button3.Location = new Point(3, 207);
             button3.Name = "button3";
             button3.Size = new Size(50, 45);
             button3.TabIndex = 8;
             button3.TextAlign = ContentAlignment.MiddleLeft;
-            button3.UseVisualStyleBackColor = true;
+            button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
             // 
             // button5
             // 
+            button5.BackColor = Color.FromArgb(238, 238, 238);
+            button5.FlatAppearance.BorderSize = 0;
+            button5.FlatStyle = FlatStyle.Flat;
+            button5.Font = new Font("Segoe UI", 12F);
+            button5.ForeColor = Color.Black;
             button5.Image = (Image)resources.GetObject("button5.Image");
             button5.Location = new Point(3, 258);
             button5.Name = "button5";
             button5.Size = new Size(50, 45);
             button5.TabIndex = 10;
             button5.TextAlign = ContentAlignment.MiddleLeft;
-            button5.UseVisualStyleBackColor = true;
+            button5.UseVisualStyleBackColor = false;
             button5.Click += button5_Click;
             // 
             // button6
             // 
+            button6.BackColor = Color.FromArgb(238, 238, 238);
+            button6.FlatAppearance.BorderSize = 0;
+            button6.FlatStyle = FlatStyle.Flat;
+            button6.Font = new Font("Segoe UI", 12F);
+            button6.ForeColor = Color.Black;
             button6.Image = (Image)resources.GetObject("button6.Image");
             button6.Location = new Point(3, 309);
             button6.Name = "button6";
             button6.Size = new Size(50, 45);
             button6.TabIndex = 11;
             button6.TextAlign = ContentAlignment.MiddleLeft;
-            button6.UseVisualStyleBackColor = true;
+            button6.UseVisualStyleBackColor = false;
             // 
             // button7
             // 
+            button7.BackColor = Color.FromArgb(238, 238, 238);
+            button7.FlatAppearance.BorderSize = 0;
+            button7.FlatStyle = FlatStyle.Flat;
+            button7.Font = new Font("Segoe UI", 12F);
+            button7.ForeColor = Color.Black;
             button7.Image = (Image)resources.GetObject("button7.Image");
             button7.Location = new Point(3, 360);
             button7.Name = "button7";
             button7.Size = new Size(50, 45);
             button7.TabIndex = 12;
             button7.TextAlign = ContentAlignment.MiddleLeft;
-            button7.UseVisualStyleBackColor = true;
+            button7.UseVisualStyleBackColor = false;
             // 
             // button8
             // 
+            button8.BackColor = Color.FromArgb(238, 238, 238);
+            button8.FlatAppearance.BorderSize = 0;
+            button8.FlatStyle = FlatStyle.Flat;
+            button8.Font = new Font("Segoe UI", 12F);
+            button8.ForeColor = Color.Black;
             button8.Image = (Image)resources.GetObject("button8.Image");
             button8.Location = new Point(3, 411);
             button8.Name = "button8";
             button8.Size = new Size(50, 45);
             button8.TabIndex = 13;
             button8.TextAlign = ContentAlignment.MiddleLeft;
-            button8.UseVisualStyleBackColor = true;
+            button8.UseVisualStyleBackColor = false;
             // 
             // button9
             // 
+            button9.BackColor = Color.FromArgb(238, 238, 238);
+            button9.FlatAppearance.BorderSize = 0;
+            button9.FlatStyle = FlatStyle.Flat;
+            button9.Font = new Font("Segoe UI", 12F);
+            button9.ForeColor = Color.Black;
             button9.Image = (Image)resources.GetObject("button9.Image");
             button9.Location = new Point(3, 462);
             button9.Name = "button9";
             button9.Size = new Size(50, 45);
             button9.TabIndex = 14;
             button9.TextAlign = ContentAlignment.MiddleLeft;
-            button9.UseVisualStyleBackColor = true;
+            button9.UseVisualStyleBackColor = false;
             // 
             // openFileDialog1
             // 

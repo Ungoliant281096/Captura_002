@@ -224,7 +224,7 @@
             dataGridViewPoliza.GridColor = SystemColors.ControlLight;
             dataGridViewPoliza.Location = new Point(48, 173);
             dataGridViewPoliza.Name = "dataGridViewPoliza";
-            dataGridViewPoliza.Size = new Size(942, 269);
+            dataGridViewPoliza.Size = new Size(942, 283);
             dataGridViewPoliza.TabIndex = 21;
             dataGridViewPoliza.CellEndEdit += dataGridViewPoliza_CellEndEdit_1;
             // 
@@ -254,7 +254,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.Control;
+            panel1.BackColor = SystemColors.GradientInactiveCaption;
             panel1.Controls.Add(textBox3);
             panel1.Controls.Add(textBox2);
             panel1.Controls.Add(textBox1);
@@ -268,8 +268,10 @@
             // 
             // textBox3
             // 
+            textBox3.BackColor = SystemColors.ControlLightLight;
             textBox3.BorderStyle = BorderStyle.None;
             textBox3.Font = new Font("Segoe UI", 12F);
+            textBox3.ForeColor = SystemColors.ActiveCaptionText;
             textBox3.Location = new Point(93, 68);
             textBox3.Name = "textBox3";
             textBox3.Size = new Size(359, 22);
@@ -277,8 +279,10 @@
             // 
             // textBox2
             // 
+            textBox2.BackColor = SystemColors.ControlLightLight;
             textBox2.BorderStyle = BorderStyle.None;
             textBox2.Font = new Font("Segoe UI", 12F);
+            textBox2.ForeColor = SystemColors.ActiveCaptionText;
             textBox2.Location = new Point(93, 40);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(359, 22);
@@ -286,8 +290,10 @@
             // 
             // textBox1
             // 
+            textBox1.BackColor = SystemColors.ControlLightLight;
             textBox1.BorderStyle = BorderStyle.None;
             textBox1.Font = new Font("Segoe UI", 12F);
+            textBox1.ForeColor = SystemColors.ActiveCaptionText;
             textBox1.Location = new Point(93, 12);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(359, 22);
@@ -295,7 +301,7 @@
             // 
             // label4
             // 
-            label4.BackColor = SystemColors.Control;
+            label4.BackColor = SystemColors.GradientInactiveCaption;
             label4.Font = new Font("Segoe UI", 12F);
             label4.Location = new Point(6, 68);
             label4.Name = "label4";
@@ -305,7 +311,7 @@
             // 
             // label3
             // 
-            label3.BackColor = SystemColors.Control;
+            label3.BackColor = SystemColors.GradientInactiveCaption;
             label3.Font = new Font("Segoe UI", 12F);
             label3.Location = new Point(6, 40);
             label3.Name = "label3";
@@ -315,7 +321,7 @@
             // 
             // label2
             // 
-            label2.BackColor = SystemColors.Control;
+            label2.BackColor = SystemColors.GradientInactiveCaption;
             label2.Font = new Font("Segoe UI", 12F);
             label2.Location = new Point(6, 12);
             label2.Name = "label2";

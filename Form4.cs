@@ -75,7 +75,6 @@ namespace Captura
         private void InitializeDataGridView()
         {
             dataGridViewPoliza.ColumnCount = 7;
-            dataGridViewPoliza.RowCount = 300;
 
             dataGridViewPoliza.Columns[0].HeaderText = "Cuenta";
             dataGridViewPoliza.Columns[1].HeaderText = "Subcuenta";
@@ -192,7 +191,7 @@ namespace Captura
                                 int currentRowIndex = dataGridViewPoliza.CurrentCell.RowIndex;
                                 DataGridViewRow currentRow = dataGridViewPoliza.Rows[currentRowIndex];
                                 dataGridViewPoliza.Rows[currentRowIndex].Cells[2].Style.Font = new Font(dataGridViewPoliza.Font, FontStyle.Bold);
-                                currentRow.DefaultCellStyle.BackColor = Color.LightYellow;
+                                currentRow.DefaultCellStyle.BackColor = Color.FromArgb(235,244,246);
                                 currentRow.Cells[2].Value = record.B2;
 
                                 inicio = int.Parse(record.B4);

@@ -46,6 +46,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(508, 319);
             Controls.Add(dataGridView1);
             Name = "Form3";
