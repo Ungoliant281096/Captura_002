@@ -31,13 +31,6 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form5));
             DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            panel3 = new Panel();
-            label13 = new Label();
-            label12 = new Label();
-            label1 = new Label();
-            textBox12 = new TextBox();
-            textBox11 = new TextBox();
-            textBox10 = new TextBox();
             listView3 = new ListView();
             columnHeader3 = new ColumnHeader();
             listView2 = new ListView();
@@ -67,85 +60,18 @@
             label10 = new Label();
             dateTimePicker2 = new DateTimePicker();
             dataGridViewPoliza = new DataGridView();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            pegarToolStripMenuItem = new ToolStripMenuItem();
+            verCuentasToolStripMenuItem = new ToolStripMenuItem();
+            verSubcuentasToolStripMenuItem = new ToolStripMenuItem();
             flowLayoutPanel1 = new FlowLayoutPanel();
             openFileDialog1 = new OpenFileDialog();
             openFileDialog2 = new OpenFileDialog();
-            contextMenuStrip1 = new ContextMenuStrip(components);
-            pegarToolStripMenuItem = new ToolStripMenuItem();
-            panel3.SuspendLayout();
             panel2.SuspendLayout();
             flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPoliza).BeginInit();
             contextMenuStrip1.SuspendLayout();
             SuspendLayout();
-            // 
-            // panel3
-            // 
-            panel3.BackColor = SystemColors.Menu;
-            panel3.Controls.Add(label13);
-            panel3.Controls.Add(label12);
-            panel3.Controls.Add(label1);
-            panel3.Controls.Add(textBox12);
-            panel3.Controls.Add(textBox11);
-            panel3.Controls.Add(textBox10);
-            panel3.Location = new Point(59, 173);
-            panel3.Name = "panel3";
-            panel3.Size = new Size(942, 39);
-            panel3.TabIndex = 39;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 12F);
-            label13.Location = new Point(458, 6);
-            label13.Name = "label13";
-            label13.Size = new Size(63, 21);
-            label13.TabIndex = 5;
-            label13.Text = "Balance";
-            // 
-            // label12
-            // 
-            label12.AutoSize = true;
-            label12.Font = new Font("Segoe UI", 12F);
-            label12.Location = new Point(220, 9);
-            label12.Name = "label12";
-            label12.Size = new Size(52, 21);
-            label12.TabIndex = 4;
-            label12.Text = "Haber";
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F);
-            label1.Location = new Point(3, 3);
-            label1.Name = "label1";
-            label1.Size = new Size(46, 21);
-            label1.TabIndex = 3;
-            label1.Text = "Debe";
-            // 
-            // textBox12
-            // 
-            textBox12.Font = new Font("Segoe UI", 12F);
-            textBox12.Location = new Point(527, 3);
-            textBox12.Name = "textBox12";
-            textBox12.Size = new Size(159, 29);
-            textBox12.TabIndex = 2;
-            // 
-            // textBox11
-            // 
-            textBox11.Font = new Font("Segoe UI", 12F);
-            textBox11.Location = new Point(293, 6);
-            textBox11.Name = "textBox11";
-            textBox11.Size = new Size(159, 29);
-            textBox11.TabIndex = 1;
-            // 
-            // textBox10
-            // 
-            textBox10.Font = new Font("Segoe UI", 12F);
-            textBox10.Location = new Point(55, 6);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(159, 29);
-            textBox10.TabIndex = 0;
             // 
             // listView3
             // 
@@ -438,11 +364,41 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridViewPoliza.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridViewPoliza.GridColor = SystemColors.ControlLight;
-            dataGridViewPoliza.Location = new Point(59, 218);
+            dataGridViewPoliza.Location = new Point(59, 173);
             dataGridViewPoliza.Name = "dataGridViewPoliza";
-            dataGridViewPoliza.Size = new Size(942, 224);
+            dataGridViewPoliza.Size = new Size(942, 269);
             dataGridViewPoliza.TabIndex = 32;
             dataGridViewPoliza.CellEndEdit += dataGridViewPoliza_CellEndEdit_1;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { pegarToolStripMenuItem, verCuentasToolStripMenuItem, verSubcuentasToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(197, 70);
+            // 
+            // pegarToolStripMenuItem
+            // 
+            pegarToolStripMenuItem.Name = "pegarToolStripMenuItem";
+            pegarToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.V;
+            pegarToolStripMenuItem.Size = new Size(196, 22);
+            pegarToolStripMenuItem.Text = "Pegar";
+            pegarToolStripMenuItem.Click += pegarToolStripMenuItem_Click;
+            // 
+            // verCuentasToolStripMenuItem
+            // 
+            verCuentasToolStripMenuItem.Name = "verCuentasToolStripMenuItem";
+            verCuentasToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.M;
+            verCuentasToolStripMenuItem.Size = new Size(196, 22);
+            verCuentasToolStripMenuItem.Text = "Ver cuentas";
+            verCuentasToolStripMenuItem.Click += verCuentasToolStripMenuItem_Click;
+            // 
+            // verSubcuentasToolStripMenuItem
+            // 
+            verSubcuentasToolStripMenuItem.Name = "verSubcuentasToolStripMenuItem";
+            verSubcuentasToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.N;
+            verSubcuentasToolStripMenuItem.Size = new Size(196, 22);
+            verSubcuentasToolStripMenuItem.Text = "Ver subcuentas";
+            verSubcuentasToolStripMenuItem.Click += verSubcuentasToolStripMenuItem_Click;
             // 
             // flowLayoutPanel1
             // 
@@ -462,27 +418,12 @@
             // 
             openFileDialog2.FileName = "openFileDialog2";
             // 
-            // contextMenuStrip1
-            // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { pegarToolStripMenuItem });
-            contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(181, 48);
-            // 
-            // pegarToolStripMenuItem
-            // 
-            pegarToolStripMenuItem.Name = "pegarToolStripMenuItem";
-            pegarToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.V;
-            pegarToolStripMenuItem.Size = new Size(180, 22);
-            pegarToolStripMenuItem.Text = "Pegar";
-            pegarToolStripMenuItem.Click += pegarToolStripMenuItem_Click;
-            // 
             // Form5
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.GradientInactiveCaption;
             ClientSize = new Size(1013, 450);
-            Controls.Add(panel3);
             Controls.Add(listView3);
             Controls.Add(listView2);
             Controls.Add(listView1);
@@ -495,8 +436,6 @@
             Name = "Form5";
             Text = "Capturar Cheque";
             Resize += Form5_Resize;
-            panel3.ResumeLayout(false);
-            panel3.PerformLayout();
             panel2.ResumeLayout(false);
             panel2.PerformLayout();
             flowLayoutPanel2.ResumeLayout(false);
@@ -507,14 +446,6 @@
         }
 
         #endregion
-
-        private Panel panel3;
-        private Label label13;
-        private Label label12;
-        private Label label1;
-        private TextBox textBox12;
-        private TextBox textBox11;
-        private TextBox textBox10;
         private ListView listView3;
         private ColumnHeader columnHeader3;
         private ListView listView2;
@@ -549,5 +480,7 @@
         private OpenFileDialog openFileDialog2;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem pegarToolStripMenuItem;
+        private ToolStripMenuItem verCuentasToolStripMenuItem;
+        private ToolStripMenuItem verSubcuentasToolStripMenuItem;
     }
 }

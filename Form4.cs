@@ -558,10 +558,6 @@ namespace Captura
                         rowIndex++;
                     }
 
-                    // Actualizar la fila de la cuenta con las sumas
-                    //row.Cells[4].Value = sumaDebito;
-                    //row.Cells[5].Value = sumaCredito;
-
                     decimal sumaTotalCuenta;
 
                     sumaTotalCuenta = sumaDebito + sumaCredito;
