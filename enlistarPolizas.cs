@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -325,6 +326,7 @@ namespace Captura
                     MessageBox.Show("El registro especificado está fuera del rango.");
                 }
             }
+            encontrarMovimientos();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -339,41 +341,7 @@ namespace Captura
             dataGridView1.Height = this.ClientSize.Height - dataGridView1.Top - 20;
         }
 
-        private void dataGridView2_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            string valor = dataGridView2.CurrentCell.Value?.ToString();
-
-            switch (e.ColumnIndex)
-            {
-                case 0:
-                    HandleCuentaEdit(valor, e.RowIndex);
-                    break;
-
-                case 1:
-                    HandleSubcuentaEdit(valor, e.RowIndex);
-                    break;
-            }
-        }
-
-        private void HandleCuentaEdit(string valor, int rowIndex)
-        {
-            if (!string.IsNullOrEmpty(valor))
-            {
-                SearchRecordByB1(valor);
-            }
-
-            SetCurrentCell(rowIndex, 1);
-        }
-        private void HandleSubcuentaEdit(string valor, int rowIndex)
-        {
-            if (!string.IsNullOrEmpty(valor))
-            {
-                SearchRecordByC1(valor, inicio, final);
-            }
-
-            SetCurrentCell(rowIndex, 3);
-        }
-        private void SearchRecordByC1(string searchValue, int inicioC, int finalC)
+        private void SearchRecordByC1(string cuenta, string searchValue, int inicioC, int finalC, int fila)
         {
             try
             {
@@ -383,8 +351,8 @@ namespace Captura
                 using (BinaryReader reader = new BinaryReader(CATAUX))
                 {
                     long numRecords = CATAUX.Length / recordSize;
-                    string cuenta = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex - 1].Cells[0].Value?.ToString() ?? string.Empty;
-
+                    //string cuenta = dataGridView2.Rows[dataGridView2.CurrentCell.RowIndex - 1].Cells[0].Value?.ToString() ?? string.Empty;
+                    
                     for (int i = inicioC - 1; i < finalC - 1; i++)
                     {
                         CATAUX.Seek(i * recordSize, SeekOrigin.Begin);
@@ -398,7 +366,7 @@ namespace Captura
                             if (i.ToString() == searchValue)
                             {
                                 int currentRowIndex = dataGridView2.CurrentCell.RowIndex;
-                                DataGridViewRow currentRow = dataGridView2.Rows[currentRowIndex];
+                                DataGridViewRow currentRow = dataGridView2.Rows[fila];
                                 currentRow.Cells[2].Value = record.C2;
 
                                 return;
@@ -417,7 +385,7 @@ namespace Captura
             }
         }
 
-        private void SearchRecordByB1(string searchValue)
+        private void SearchRecordByB1(string searchValue, int fila)
         {
             try
             {
@@ -439,9 +407,10 @@ namespace Captura
 
                             if (record.B1.Trim() == searchValue)
                             {
-                                int currentRowIndex = dataGridView2.CurrentCell.RowIndex;
-                                DataGridViewRow currentRow = dataGridView2.Rows[currentRowIndex];
-                                dataGridView2.Rows[currentRowIndex].Cells[2].Style.Font = new Font(dataGridView2.Font, FontStyle.Bold);
+                                //int currentRowIndex = dataGridView2.CurrentCell.RowIndex;
+                                DataGridViewRow currentRow = dataGridView2.Rows[fila];
+                                dataGridView2.Rows[fila].Cells[2].Style.Font = new Font(dataGridView2.Font, FontStyle.Bold);
+                                currentRow.DefaultCellStyle.BackColor = Color.FromArgb(235, 244, 246);
                                 currentRow.Cells[2].Value = record.B2;
 
                                 inicio = int.Parse(record.B4);
@@ -473,6 +442,45 @@ namespace Captura
                 return;
             }
         }
+        private void encontrarMovimientos()
+        {
+            for (int i = 0; i < dataGridView2.Rows.Count; i++)
+            {
+                if (!dataGridView2.Rows[i].IsNewRow)
+                {
+                    var valor = dataGridView2.Rows[i].Cells[0].Value;
 
+                    // Verificar si la celda no está vacía
+                    if (valor != null && !string.IsNullOrWhiteSpace(valor.ToString()))
+                    {
+                        // Procesar la cuenta principal
+                        SearchRecordByB1(valor.ToString(), i);
+
+                        string cuenta = valor.ToString();
+
+                        // Buscar subcuentas empezando desde la fila siguiente a la actual
+                        for (int j = i + 1; j < dataGridView2.Rows.Count; j++)
+                        {
+                            if (!dataGridView2.Rows[j].IsNewRow)
+                            {
+                                var valorSub = dataGridView2.Rows[j].Cells[1].Value;
+
+                                // Verificar si la celda no está vacía
+                                if (valorSub != null && !string.IsNullOrWhiteSpace(valorSub.ToString()))
+                                {
+                                    // Procesar la subcuenta
+                                    SearchRecordByC1(cuenta, valorSub.ToString(), inicio, final, j);
+                                }
+                                else
+                                {
+                                    // Si la celda está vacía, salir del segundo for
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

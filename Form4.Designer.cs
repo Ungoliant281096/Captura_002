@@ -59,6 +59,7 @@
             label2 = new Label();
             openFileDialog1 = new OpenFileDialog();
             openFileDialog2 = new OpenFileDialog();
+            eliminarFilasToolStripMenuItem = new ToolStripMenuItem();
             flowLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridViewPoliza).BeginInit();
             contextMenuStrip1.SuspendLayout();
@@ -230,15 +231,15 @@
             // 
             // contextMenuStrip1
             // 
-            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { pegarToolStripMenuItem });
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { pegarToolStripMenuItem, eliminarFilasToolStripMenuItem });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(146, 26);
+            contextMenuStrip1.Size = new Size(181, 70);
             // 
             // pegarToolStripMenuItem
             // 
             pegarToolStripMenuItem.Name = "pegarToolStripMenuItem";
             pegarToolStripMenuItem.ShortcutKeys = Keys.Control | Keys.V;
-            pegarToolStripMenuItem.Size = new Size(145, 22);
+            pegarToolStripMenuItem.Size = new Size(180, 22);
             pegarToolStripMenuItem.Text = "Pegar";
             pegarToolStripMenuItem.Click += pegarToolStripMenuItem_Click;
             // 
@@ -337,6 +338,13 @@
             // 
             openFileDialog2.FileName = "openFileDialog2";
             // 
+            // eliminarFilasToolStripMenuItem
+            // 
+            eliminarFilasToolStripMenuItem.Name = "eliminarFilasToolStripMenuItem";
+            eliminarFilasToolStripMenuItem.Size = new Size(180, 22);
+            eliminarFilasToolStripMenuItem.Text = "Eliminar filas";
+            eliminarFilasToolStripMenuItem.Click += eliminarFilasToolStripMenuItem_Click;
+            // 
             // CapturaPoliza
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -393,5 +401,6 @@
         private Button buttonSubcuenta;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem pegarToolStripMenuItem;
+        private ToolStripMenuItem eliminarFilasToolStripMenuItem;
     }
 }

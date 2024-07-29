@@ -191,7 +191,7 @@ namespace Captura
                                 int currentRowIndex = dataGridViewPoliza.CurrentCell.RowIndex;
                                 DataGridViewRow currentRow = dataGridViewPoliza.Rows[currentRowIndex];
                                 dataGridViewPoliza.Rows[currentRowIndex].Cells[2].Style.Font = new Font(dataGridViewPoliza.Font, FontStyle.Bold);
-                                currentRow.DefaultCellStyle.BackColor = Color.FromArgb(235,244,246);
+                                currentRow.DefaultCellStyle.BackColor = Color.FromArgb(235, 244, 246);
                                 currentRow.Cells[2].Value = record.B2;
 
                                 inicio = int.Parse(record.B4);
@@ -405,7 +405,7 @@ namespace Captura
             {
                 return;
             }
-        }     
+        }
 
         private void button4_Click(object sender, EventArgs e)
         {
@@ -438,77 +438,77 @@ namespace Captura
 
         private void pegarToolStripMenuItem_Click(object sender, EventArgs e)
         {
-                try
+            try
+            {
+                string texto_copiado = Clipboard.GetText();
+                string[] lineas = texto_copiado.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
+                int error = 0;
+                int fila = dataGridViewPoliza.CurrentCell.RowIndex;
+                int columna = dataGridViewPoliza.CurrentCell.ColumnIndex;
+                DataGridViewCell objeto_celda;
+                dataGridViewPoliza.Columns[2].ReadOnly = false;
+
+                foreach (string linea in lineas)
                 {
-                    string texto_copiado = Clipboard.GetText();
-                    string[] lineas = texto_copiado.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None);
-                    int error = 0;
-                    int fila = dataGridViewPoliza.CurrentCell.RowIndex;
-                    int columna = dataGridViewPoliza.CurrentCell.ColumnIndex;
-                    DataGridViewCell objeto_celda;
-                    dataGridViewPoliza.Columns[2].ReadOnly = false;
-
-                    foreach (string linea in lineas)
+                    if (fila < dataGridViewPoliza.RowCount && linea.Length > 0)
                     {
-                        if (fila < dataGridViewPoliza.RowCount && linea.Length > 0)
-                        {
-                            string[] celdas = linea.Split('\t');
+                        string[] celdas = linea.Split('\t');
 
-                            for (int indice = 0; indice < celdas.Length; ++indice)
+                        for (int indice = 0; indice < celdas.Length; ++indice)
+                        {
+                            if (columna + indice < dataGridViewPoliza.ColumnCount)
                             {
-                                if (columna + indice < dataGridViewPoliza.ColumnCount)
+                                objeto_celda = dataGridViewPoliza[columna + indice, fila];
+                                if (!objeto_celda.ReadOnly && objeto_celda != null)
                                 {
-                                    objeto_celda = dataGridViewPoliza[columna + indice, fila];
-                                    if (!objeto_celda.ReadOnly && objeto_celda != null)
+                                    if (objeto_celda.Value == null || objeto_celda.Value.ToString() != celdas[indice])
                                     {
-                                        if (objeto_celda.Value == null || objeto_celda.Value.ToString() != celdas[indice])
+                                        if (objeto_celda.ValueType != null)
                                         {
-                                            if (objeto_celda.ValueType != null)
-                                            {
-                                                objeto_celda.Value = Convert.ChangeType(celdas[indice], objeto_celda.ValueType);
-                                            }
-                                            else
-                                            {
-                                                objeto_celda.Value = celdas[indice];
-                                            }
+                                            objeto_celda.Value = Convert.ChangeType(celdas[indice], objeto_celda.ValueType);
                                         }
-                                    }
-                                    else
-                                    {
-                                        error++;
+                                        else
+                                        {
+                                            objeto_celda.Value = celdas[indice];
+                                        }
                                     }
                                 }
                                 else
                                 {
-                                    break;
+                                    error++;
                                 }
                             }
-                            fila++;
+                            else
+                            {
+                                break;
+                            }
                         }
-                        else
-                        {
-                            break;
-                        }
+                        fila++;
                     }
-                    if (error > 0)
+                    else
                     {
-                        MessageBox.Show(string.Format("{0} celdas no pueden ser actualizadas debido a que son de solo lectura.", error),
-                                        "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        break;
                     }
-                    dataGridViewPoliza.Columns[2].ReadOnly = true;
                 }
-                catch (FormatException fexcepcion)
+                if (error > 0)
                 {
-                    MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
+                    MessageBox.Show(string.Format("{0} celdas no pueden ser actualizadas debido a que son de solo lectura.", error),
                                     "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
                 }
-                catch (NullReferenceException nexcepcion)
-                {
-                    MessageBox.Show("Se ha encontrado una referencia nula en una de las celdas." + "\n\nDETALLES: \n\n" + nexcepcion.Message,
-                                    "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                dataGridViewPoliza.Columns[2].ReadOnly = true;
+            }
+            catch (FormatException fexcepcion)
+            {
+                MessageBox.Show("Los datos que pegó están en el formato incorrecto para la celda." + "\n\nDETALLES: \n\n" + fexcepcion.Message,
+                                "ADVERTENCIA", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            catch (NullReferenceException nexcepcion)
+            {
+                MessageBox.Show("Se ha encontrado una referencia nula en una de las celdas." + "\n\nDETALLES: \n\n" + nexcepcion.Message,
+                                "ERROR", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
         }
         private void acumularParcial()
         {
@@ -580,6 +580,15 @@ namespace Captura
             }
         }
 
-
+        private void eliminarFilasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in dataGridViewPoliza.SelectedRows)
+            {
+                if (!row.IsNewRow) // Asegúrate de no intentar eliminar la fila para agregar nuevos datos
+                {
+                    dataGridViewPoliza.Rows.Remove(row);
+                }
+            }
+        }
     }
 }

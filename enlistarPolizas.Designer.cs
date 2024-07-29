@@ -104,7 +104,6 @@
             dataGridView2.Name = "dataGridView2";
             dataGridView2.Size = new Size(671, 361);
             dataGridView2.TabIndex = 5;
-            dataGridView2.CellEndEdit += dataGridView2_CellEndEdit;
             // 
             // label2
             // 
@@ -201,7 +200,6 @@
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             Name = "enlistarPolizas";
             Text = "enlistarPolizas";
-            Load += enlistarPolizas_Load;
             Resize += enlistarPolizas_Resize;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
